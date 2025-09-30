@@ -1,0 +1,183 @@
+.item-assignment {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 15px;
+  border: 1px solid #e9ecef;
+}
+
+.additional-cost-card {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.item-info h4 {
+  margin: 0 0 5px 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.item-price {
+  margin: 0;
+  color: #28a745;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.cost-type {
+  color: #856404;
+  font-weight: normal;
+  font-size: 0.9rem;
+}
+
+.add-button {
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.add-button:hover {
+  background: #5a6fd8;
+  transform: scale(1.05);
+}
+
+.plus-icon {
+  font-weight: bold;
+}
+
+.assigned-count {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.assigned-people {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.assigned-person {
+  background: #667eea;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.remove-person {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.remove-person:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.people-selection {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+.people-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.person-option {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.person-option:hover {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.no-people {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  margin: 20px 0;
+}
+
+.close-selection {
+  width: 100%;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.close-selection:hover {
+  background: #218838;
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  .item-assignment {
+    padding: 15px;
+  }
+  
+  .item-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .add-button {
+    align-self: flex-end;
+  }
+  
+  .people-list {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+}
