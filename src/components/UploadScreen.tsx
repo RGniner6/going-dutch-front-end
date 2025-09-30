@@ -7,6 +7,7 @@ interface UploadScreenProps {
   onReceiptProcessed: (receiptData: ReceiptAnalysisResult) => void;
   onError: (error: string) => void;
   onSetLoading: (isLoading: boolean) => void;
+  onUploadStarted: () => void;
   isLoading: boolean;
   error: string | null;
 }
@@ -15,6 +16,7 @@ const UploadScreen: React.FC<UploadScreenProps> = ({
   onReceiptProcessed,
   onError,
   onSetLoading,
+  onUploadStarted,
   isLoading,
   error,
 }) => {
@@ -34,7 +36,9 @@ const UploadScreen: React.FC<UploadScreenProps> = ({
   const handleUpload = async () => {
     if (!selectedFile) return;
 
-    onSetLoading(true);
+    // Immediately navigate to names screen and start loading
+    onUploadStarted();
+    
     try {
       const response = await receiptApi.processReceipt(selectedFile);
       

@@ -19,7 +19,6 @@ function App() {
     setState(prev => ({
       ...prev,
       receiptData,
-      currentScreen: 'names',
       isLoading: false,
       error: null,
     }));
@@ -31,6 +30,9 @@ function App() {
       error,
       isLoading: false,
       currentScreen: 'upload',
+      receiptData: null,
+      itemAssignments: [],
+      // Keep people array to preserve entered names
     }));
   }, []);
 
@@ -54,9 +56,9 @@ function App() {
       ...prev,
       currentScreen: 'upload',
       receiptData: null,
-      people: [],
       itemAssignments: [],
       error: null,
+      // Keep people array to preserve entered names
     }));
   }, []);
 
@@ -67,6 +69,15 @@ function App() {
     }));
   }, []);
 
+  const handleUploadStarted = useCallback(() => {
+    setState(prev => ({
+      ...prev,
+      currentScreen: 'names',
+      isLoading: true,
+      error: null,
+    }));
+  }, []);
+
   return (
     <div className="App">
       {state.currentScreen === 'upload' && (
@@ -74,6 +85,7 @@ function App() {
           onReceiptProcessed={handleReceiptProcessed}
           onError={handleReceiptError}
           onSetLoading={handleSetLoading}
+          onUploadStarted={handleUploadStarted}
           isLoading={state.isLoading}
           error={state.error}
         />
@@ -85,6 +97,7 @@ function App() {
           onBack={handleBackToUpload}
           receiptData={state.receiptData}
           isLoading={state.isLoading}
+          existingPeople={state.people}
         />
       )}
       

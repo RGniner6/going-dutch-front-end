@@ -7,6 +7,7 @@ interface NamesScreenProps {
   onBack: () => void;
   receiptData: ReceiptAnalysisResult | null;
   isLoading: boolean;
+  existingPeople?: Person[];
 }
 
 const NamesScreen: React.FC<NamesScreenProps> = ({
@@ -14,8 +15,9 @@ const NamesScreen: React.FC<NamesScreenProps> = ({
   onBack,
   receiptData,
   isLoading,
+  existingPeople = [],
 }) => {
-  const [names, setNames] = useState<string[]>([]);
+  const [names, setNames] = useState<string[]>(existingPeople.map(p => p.name));
   const [currentName, setCurrentName] = useState('');
   const [isApiReady, setIsApiReady] = useState(false);
 
@@ -76,12 +78,11 @@ const NamesScreen: React.FC<NamesScreenProps> = ({
               onChange={(e) => setCurrentName(e.target.value)}
               placeholder="Enter a name"
               className="name-input"
-              disabled={isLoading}
             />
             <button 
               type="submit" 
               className="add-button"
-              disabled={!currentName.trim() || isLoading}
+              disabled={!currentName.trim()}
             >
               Add
             </button>
@@ -125,7 +126,14 @@ const NamesScreen: React.FC<NamesScreenProps> = ({
           className="go-dutch-button"
           disabled={names.length === 0 || !isApiReady}
         >
-          Go Dutch!
+          {isLoading && !isApiReady ? (
+            <>
+              <div className="button-spinner"></div>
+              Processing...
+            </>
+          ) : (
+            'Go Dutch!'
+          )}
         </button>
 
         {names.length === 0 && (
