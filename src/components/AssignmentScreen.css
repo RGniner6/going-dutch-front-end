@@ -72,73 +72,12 @@ h1 {
   font-size: 1.2rem;
 }
 
-.item-card {
-  background: #f8f9fa;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 15px;
-  border: 1px solid #e9ecef;
-}
-
 .additional-cost-card {
   background: #fff3cd;
   border: 1px solid #ffeaa7;
-}
-
-.item-info {
+  border-radius: 12px;
+  padding: 0;
   margin-bottom: 15px;
-}
-
-.item-info h4 {
-  margin: 0 0 5px 0;
-  color: #333;
-  font-size: 1.1rem;
-}
-
-.item-price {
-  margin: 0;
-  color: #28a745;
-  font-weight: bold;
-  font-size: 1rem;
-}
-
-.cost-type {
-  color: #856404;
-  font-weight: normal;
-  font-size: 0.9rem;
-}
-
-.assignment-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.assign-button {
-  background: white;
-  border: 2px solid #ddd;
-  border-radius: 20px;
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: #666;
-}
-
-.assign-button:hover {
-  border-color: #667eea;
-  color: #667eea;
-}
-
-.assign-button.assigned {
-  background: #667eea;
-  border-color: #667eea;
-  color: white;
-}
-
-.assign-button.assigned:hover {
-  background: #5a6fd8;
-  border-color: #5a6fd8;
 }
 
 .costs-section {

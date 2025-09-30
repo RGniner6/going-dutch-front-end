@@ -1,86 +1,97 @@
-import React, { useState, useCallback } from 'react';
-import './App.css';
-import UploadScreen from './components/UploadScreen';
-import NamesScreen from './components/NamesScreen';
-import AssignmentScreen from './components/AssignmentScreen';
-import { AppState, ReceiptAnalysisResult, Person, ItemAssignment } from './types/receipt';
+import React, { useState, useCallback } from "react"
+import "./App.css"
+import UploadScreen from "./components/UploadScreen"
+import NamesScreen from "./components/NamesScreen"
+import AssignmentScreen from "./components/AssignmentScreen"
+import {
+  AppState,
+  ReceiptAnalysisResult,
+  Person,
+  ItemAssignments,
+} from "./types/receipt"
 
 function App() {
   const [state, setState] = useState<AppState>({
-    currentScreen: 'upload',
+    currentScreen: "upload",
     receiptData: null,
     people: [],
     itemAssignments: [],
     isLoading: false,
     error: null,
-  });
+  })
 
-  const handleReceiptProcessed = useCallback((receiptData: ReceiptAnalysisResult) => {
-    setState(prev => ({
-      ...prev,
-      receiptData,
-      isLoading: false,
-      error: null,
-    }));
-  }, []);
+  const handleReceiptProcessed = useCallback(
+    (receiptData: ReceiptAnalysisResult) => {
+      setState((prev) => ({
+        ...prev,
+        receiptData,
+        isLoading: false,
+        error: null,
+      }))
+    },
+    [],
+  )
 
   const handleReceiptError = useCallback((error: string) => {
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       error,
       isLoading: false,
-      currentScreen: 'upload',
+      currentScreen: "upload",
       receiptData: null,
       itemAssignments: [],
       // Keep people array to preserve entered names
-    }));
-  }, []);
+    }))
+  }, [])
 
   const handleNamesSubmitted = useCallback((people: Person[]) => {
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       people,
-      currentScreen: 'assignments',
-    }));
-  }, []);
+      currentScreen: "assignments",
+    }))
+  }, [])
 
-  const handleItemAssignmentsUpdated = useCallback((itemAssignments: ItemAssignment[]) => {
-    setState(prev => ({
-      ...prev,
-      itemAssignments,
-    }));
-  }, []);
+  const handleItemAssignmentsUpdated = useCallback(
+    (itemAssignments: ItemAssignments[]) => {
+      setState((prev) => ({
+        ...prev,
+        itemAssignments,
+      }))
+    },
+    [],
+  )
 
   const handleBackToUpload = useCallback(() => {
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
-      currentScreen: 'upload',
+      currentScreen: "upload",
       receiptData: null,
       itemAssignments: [],
       error: null,
       // Keep people array to preserve entered names
-    }));
-  }, []);
+    }))
+  }, [])
 
   const handleSetLoading = useCallback((isLoading: boolean) => {
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       isLoading,
-    }));
-  }, []);
+    }))
+  }, [])
 
   const handleUploadStarted = useCallback(() => {
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
-      currentScreen: 'names',
+      currentScreen: "names",
       isLoading: true,
       error: null,
-    }));
-  }, []);
+    }))
+  }, [])
 
   return (
     <div className="App">
-      {state.currentScreen === 'upload' && (
+      {state.currentScreen === "upload" && (
         <UploadScreen
           onReceiptProcessed={handleReceiptProcessed}
           onError={handleReceiptError}
@@ -90,8 +101,8 @@ function App() {
           error={state.error}
         />
       )}
-      
-      {state.currentScreen === 'names' && (
+
+      {state.currentScreen === "names" && (
         <NamesScreen
           onNamesSubmitted={handleNamesSubmitted}
           onBack={handleBackToUpload}
@@ -100,8 +111,8 @@ function App() {
           existingPeople={state.people}
         />
       )}
-      
-      {state.currentScreen === 'assignments' && (
+
+      {state.currentScreen === "assignments" && (
         <AssignmentScreen
           receiptData={state.receiptData!}
           people={state.people}
@@ -111,7 +122,7 @@ function App() {
         />
       )}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
