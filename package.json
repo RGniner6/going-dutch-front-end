@@ -11,6 +11,8 @@
     "@types/node": "^16.18.126",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
+    "axios": "^1.12.2",
+    "prettier": "^3.6.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-scripts": "5.0.1",

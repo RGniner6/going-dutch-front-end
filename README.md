@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+# Going Dutch Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A mobile-first React TypeScript app for splitting restaurant bills by uploading
+receipt photos.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Screen 1**: Upload receipt image and process with backend API
+- **Screen 2**: Enter names of people splitting the bill (while API processes)
+- **Screen 3**: Assign items to people and see cost breakdown
 
-### `npm start`
+## Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. **Install dependencies:**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+   ```bash
+   npm install
+   ```
 
-### `npm test`
+2. **Set up environment variables:** Create a `.env` file in the root directory:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```
+   REACT_APP_API_URL=http://localhost:3000
+   ```
 
-### `npm run build`
+3. **Start the development server:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   npm start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. **Make sure the backend is running:** The app expects the going-dutch backend
+   API to be running on `http://localhost:3000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+1. **Upload Receipt**: Take or select a photo of your receipt
+2. **Add Names**: While the API processes the receipt, add names of people
+   splitting the bill
+3. **Assign Items**: Once processing is complete, assign each item to one or
+   more people
+4. **View Breakdown**: See how much each person owes, including any unclaimed
+   amounts
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Mobile Optimized
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The app is designed primarily for mobile browsers with:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Touch-friendly buttons and inputs
+- Responsive design that works on small screens
+- Large, easy-to-tap interface elements
+- Mobile-first CSS approach
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## API Integration
 
-## Learn More
+The app integrates with the going-dutch backend API:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `POST /api/receipt/process` - Processes receipt images
+- Returns itemized list, total price, currency, and additional costs
+- Handles both successful processing and error cases
