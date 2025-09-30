@@ -1,24 +1,102 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useCallback } from 'react';
 import './App.css';
+import UploadScreen from './components/UploadScreen';
+import NamesScreen from './components/NamesScreen';
+import AssignmentScreen from './components/AssignmentScreen';
+import { AppState, ReceiptAnalysisResult, Person, ItemAssignment } from './types/receipt';
 
 function App() {
+  const [state, setState] = useState<AppState>({
+    currentScreen: 'upload',
+    receiptData: null,
+    people: [],
+    itemAssignments: [],
+    isLoading: false,
+    error: null,
+  });
+
+  const handleReceiptProcessed = useCallback((receiptData: ReceiptAnalysisResult) => {
+    setState(prev => ({
+      ...prev,
+      receiptData,
+      currentScreen: 'names',
+      isLoading: false,
+      error: null,
+    }));
+  }, []);
+
+  const handleReceiptError = useCallback((error: string) => {
+    setState(prev => ({
+      ...prev,
+      error,
+      isLoading: false,
+      currentScreen: 'upload',
+    }));
+  }, []);
+
+  const handleNamesSubmitted = useCallback((people: Person[]) => {
+    setState(prev => ({
+      ...prev,
+      people,
+      currentScreen: 'assignments',
+    }));
+  }, []);
+
+  const handleItemAssignmentsUpdated = useCallback((itemAssignments: ItemAssignment[]) => {
+    setState(prev => ({
+      ...prev,
+      itemAssignments,
+    }));
+  }, []);
+
+  const handleBackToUpload = useCallback(() => {
+    setState(prev => ({
+      ...prev,
+      currentScreen: 'upload',
+      receiptData: null,
+      people: [],
+      itemAssignments: [],
+      error: null,
+    }));
+  }, []);
+
+  const handleSetLoading = useCallback((isLoading: boolean) => {
+    setState(prev => ({
+      ...prev,
+      isLoading,
+    }));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {state.currentScreen === 'upload' && (
+        <UploadScreen
+          onReceiptProcessed={handleReceiptProcessed}
+          onError={handleReceiptError}
+          onSetLoading={handleSetLoading}
+          isLoading={state.isLoading}
+          error={state.error}
+        />
+      )}
+      
+      {state.currentScreen === 'names' && (
+        <NamesScreen
+          onNamesSubmitted={handleNamesSubmitted}
+          onBack={handleBackToUpload}
+          receiptData={state.receiptData}
+          isLoading={state.isLoading}
+        />
+      )}
+      
+      {state.currentScreen === 'assignments' && (
+        <AssignmentScreen
+          receiptData={state.receiptData!}
+          people={state.people}
+          itemAssignments={state.itemAssignments}
+          onItemAssignmentsUpdated={handleItemAssignmentsUpdated}
+          onBack={handleBackToUpload}
+        />
+      )}
     </div>
   );
 }
