@@ -55,6 +55,7 @@ The app is designed primarily for mobile browsers with:
 
 The app integrates with the going-dutch backend API:
 
+- repo hosted [here](https://github.com/RGniner6/going-dutch-backend)
 - `POST /api/receipt/process` - Processes receipt images
 - Returns itemized list, total price, currency, and additional costs
 - Handles both successful processing and error cases
