@@ -141,3 +141,8 @@ temp/
 
 # Optional: Uncomment if you want to ignore yarn.lock
 # yarn.lock
+
+# amplify
+.amplify
+amplify_outputs*
+amplifyconfiguration*

@@ -1,0 +1,34 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "amplify:*",
+        "lambda:*",
+        "apigateway:*",
+        "iam:PassRole",
+        "iam:GetRole",
+        "iam:ListRoles",
+        "logs:*",
+        "s3:*",
+        "cloudformation:*",
+        "sts:GetCallerIdentity"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole",
+        "iam:AttachRolePolicy",
+        "iam:PutRolePolicy",
+        "iam:UpdateAssumeRolePolicy"
+      ],
+      "Resource": [
+        "arn:aws:iam::YOUR_ACCOUNT_ID:role/GoingDutch*",
+        "arn:aws:iam::YOUR_ACCOUNT_ID:role/amplify*"
+      ]
+    }
+  ]
+}
