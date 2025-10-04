@@ -136,6 +136,5 @@ const processReceipt = async (
 }
 
 export const receiptApi = {
-  // Change this to stubProcessReceipt to use mock data, or realProcessReceipt for real API
-  processReceipt: stubProcessReceipt,
+  processReceipt,
 }
